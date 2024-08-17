@@ -35,18 +35,22 @@ class Server:
             r_type = message.get("type")
             nickname = message.get("data")
 
-            if r_type == Protocols.Response.NICKNAME:
+            if r_type == Protocols.Request.NICKNAME:
                 self.client_names[client] = nickname
             else:
                 continue
 
             if not self.waiting_for_pair:
                 self.waiting_for_pair = client
-                print("waiting for a room")
+                print(f"{self.waiting_for_pair} waiting for a room")
             else:
                 self.create_room(client)
 
             break    
+    
+    def create_room(self,client):
+         print(f"Creating Room with {client} and {self.waiting_for_pair}")
+         room = Room()
         
 
 
