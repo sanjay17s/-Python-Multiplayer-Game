@@ -71,6 +71,7 @@ class Server:
 
             if room and opponent:
                 self.send(Protocols.Response.QUESTIONS,room.questions,client)
+                time.sleep(1)
                 self.send(Protocols.Response.START,None,client)
                 break
   
